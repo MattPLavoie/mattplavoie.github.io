@@ -1,10 +1,18 @@
 body {
     background: #fafafa;
     color: #444;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14pt;
 }
+
 
 .page-header {
   margin: 200px 0;
+}
+
+.page-header h1 {
+  font-size: 50pt;
+  font-weight: 300;
 }
 
 .page-header img {
