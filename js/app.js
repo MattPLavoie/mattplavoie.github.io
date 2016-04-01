@@ -2,6 +2,8 @@
 /* global _ */
 'use strict';
 
+console.log("Hi. There isn't too much to find in here, but feel free to dig around the public GitHub repo https://github.com/MattPLavoie/mattplavoie.github.io");
+
 var apiUrl = "";
 
 var fetch = function($http, requestUrl, success) {
