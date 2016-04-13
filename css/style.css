@@ -32,6 +32,25 @@ p {
   font-size: 32pt;
 }
 
+.toggle {
+  border: 1px solid #92A8AB;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 12pt;
+  color: #92A8AB;
+}
+.toggle span {
+  padding: 4px 12px;
+  display: inline-block;
+}
+.toggle span:hover {
+  background: #DCE7E8;
+  cursor: pointer;
+}
+.toggle span.selected {
+  background: #92A8AB;
+  color: #FFF;
+}
 
 
 .event {
@@ -41,7 +60,7 @@ p {
 
 .event .date {
   margin: 42px 0 0 -20px;
-  background: #DDD;
+  background: #DADADA;
   padding: 4px 12px;
   display: block;
   position: relative;
