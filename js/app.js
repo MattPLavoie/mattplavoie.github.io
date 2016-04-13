@@ -20,5 +20,8 @@ var fetch = function($http, requestUrl, success) {
 
 
   function appController($scope, $http) {
+    $scope.showSpeakingCurrent = true;
+    $scope.showSpeakingPast = false;
+
 
   }
