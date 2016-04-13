@@ -23,5 +23,10 @@ var fetch = function($http, requestUrl, success) {
     $scope.showSpeakingCurrent = true;
     $scope.showSpeakingPast = false;
 
+    $scope.toggle = function(mode) {
+      $scope.showSpeakingCurrent = mode == 'current';
+      $scope.showSpeakingPast = mode == 'past';
+    }
+
 
   }

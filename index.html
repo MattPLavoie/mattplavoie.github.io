@@ -33,7 +33,7 @@
           <a href="http://week.orlandotech.org/">Orlando Tech Week</a> is fast approaching, so there will be some cool opportunities for all of us to connect in the Orlando Tech community. You can find all of my upcoming speaking events below. They are all open to the public and most are free so I hope to see you out there. If you're interested in asking me to speak at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
         </p>
 
-        <div class="toggle"><span ng-class="{speaking == 'past': selected}">Upcoming</span><span>Past</span></div>
+        <div class="toggle"><span ng-class="{selected: showSpeakingCurrent}" ng-click="toggle('current')">Upcoming</span><span ng-class="{selected: showSpeakingPast}" ng-click="toggle('past')">Past</span></div>
 
         <div ng-show="showSpeakingPast">
           <div class="event">
