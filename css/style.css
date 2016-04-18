@@ -60,13 +60,13 @@ p {
 
 .event .date {
   margin: 42px 0 0 -20px;
-  background: #DADADA;
   padding: 4px 12px;
   display: block;
   position: relative;
-  color: #999;
   font-size: 12pt;
   font-weight: 700;
+  color: #777;
+  border-bottom: 2px solid #777;
 }
 
 @media (min-width: 768px) {
