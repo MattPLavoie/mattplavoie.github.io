@@ -20,8 +20,8 @@ var fetch = function($http, requestUrl, success) {
 
 
   function appController($scope, $http) {
-    $scope.showSpeakingCurrent = true;
-    $scope.showSpeakingPast = false;
+    $scope.showSpeakingCurrent = false;
+    $scope.showSpeakingPast = true;
 
     $scope.toggle = function(mode) {
       $scope.showSpeakingCurrent = mode == 'current';
