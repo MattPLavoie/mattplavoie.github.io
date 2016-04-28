@@ -1,0 +1,44 @@
+{
+  "events" : 
+  {
+    "1" : 
+    {
+      "id" : 1,
+      "date" : "2016-04-02T04:00:00.000Z",
+      "time" : "9 am to 5 pm",
+      "event" : "Orlando Code Camp",
+      "title" : "You don't need a designer to test your UX",
+      "description" : "Often with startups or small teams you don't have a UX designer on your team. If you are working on a side project or hacking something together you almost certainly don't. But you can still get huge value out of a small time investment by testing your product with users.\n\nFrom guerilla usability testing to more in depth research, come learn the tools you need to know to reduce the risk of your project failing and gain confidence in your decisions.",
+      "url" : "http://www.orlandocodecamp.com/Sessions/Details/134"
+    },
+    "2" : 
+    {
+      "id" : 2,
+      "date" : "2016-04-18T04:00:00.000Z",
+      "time" : "7 to 10 pm",
+      "event" : "Ignite Orlando Tech Week",
+      "title" : "What would you budget to hire someone with precognition?",
+      "description" : "If we could, we would certainly fill this job. User Experience design and research very much can show you how successful a product or feature will be before you release it. In this 5 minute lightning talk at Ignite Orlando I will show you why you can't afford not to invest in UX.",
+      "url" : "https://www.eventbrite.com/e/ignite-orlando-tech-week-tickets-22582856933"
+    }
+  },
+  "references" : 
+  {
+    "1" : 
+    {
+      "id" : 1,
+      "icon" : "",
+      "title" : "",
+      "url" : "",
+      "event-id" : ""
+    },
+    "2" : 
+    {
+      "id" : 2,
+      "icon" : "",
+      "title" : "",
+      "url" : "",
+      "event-id" : ""
+    }
+  }
+}
