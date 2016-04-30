@@ -37,7 +37,7 @@
           If you're interested in asking me to speak at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
         </p>
 
-        <div class="toggle"><span ng-class="{selected: showSpeakingCurrent}" ng-click="toggle('current')">Upcoming</span><span ng-class="{selected: showSpeakingPast}" ng-click="toggle('past')">Past</span></div>
+        <div class="toggle"><span ng-class="{selected: showUpcomingEvents}" ng-click="toggle()">Upcoming</span><span ng-class="{selected: !showUpcomingEvents}" ng-click="toggle()">Past</span></div>
 
         <div ng-show="showSpeakingPast">
 
@@ -61,7 +61,7 @@
       </div>
 
 
-      <div class="event" ng-repeat="event in events">
+      <div class="event" ng-repeat="event in events | filter: eventsFilter">
         <strong class="date">{{event.displayDate}} {{event.time}}</strong>
         <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
         <strong>

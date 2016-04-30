@@ -25,12 +25,15 @@ var fetch = function($http, requestUrl, success) {
 
 
   function appController($scope, $http) {
-    $scope.showSpeakingCurrent = false;
-    $scope.showSpeakingPast = true;
+    $scope.showUpcomingEvents = true;
 
     $scope.toggle = function(mode) {
-      $scope.showSpeakingCurrent = mode == 'current';
-      $scope.showSpeakingPast = mode == 'past';
+      $scope.showUpcomingEvents = !$scope.showUpcomingEvents;
+    }
+
+    $scope.eventsFilter = function(event) {
+      return ($scope.showUpcomingEvents && moment().diff(event.date) < 0)
+        || (!$scope.showUpcomingEvents && moment().diff(event.date) >= 0);
     }
 
     var eventsTransform = function (data) {
