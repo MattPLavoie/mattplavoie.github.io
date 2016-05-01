@@ -10,7 +10,7 @@
 
   </head>
   <body ng-app="myApp">
-    <div class="container"  ng-controller="appController">
+    <div class="container" ng-controller="appController">
 
 
       <div class="page-header">
@@ -23,27 +23,38 @@
           <i class="fa fa-twitter"></i> You can also <a href="https://twitter.com/intent/tweet?text=Hi%20%40mattplavoie">say hi to me on twitter</a>. <br/>
           <i class="fa fa-youtube"></i> I am also starting to share <a href="https://www.youtube.com/channel/UCYcwdl9iRwa6SqruQXoQLoQ">some of my presentations on YouTube</a>.
         </div>
-
       </div>
 
 
-      <div>
+      <div ng-controller="eventsController">
         <h1>Where I'm Speaking</h1>
 
         <p>
-          <a href="http://week.orlandotech.org/">Orlando Tech Week</a> has been amazing! It was such a pleasure to meet and speak with so many incredible people. If we connected this week, thank you for making the time to come and talk with me.
-        </p>
-        <p>
-          If you're interested in asking me to speak at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
+          <a href="http://week.orlandotech.org/">Orlando Tech Week</a> was amazing! It was such a pleasure to meet and speak with so many incredible people. If we connected this week, thank you for making the time to come and talk with me.
         </p>
 
         <div class="toggle"><span ng-class="{selected: showUpcomingEvents}" ng-click="toggle()">Upcoming</span><span ng-class="{selected: !showUpcomingEvents}" ng-click="toggle()">Past</span></div>
 
-        <div ng-show="showSpeakingPast">
 
+        <div ng-if="showUpcomingEvents == undefined">
+          <p>
+            loading...
+          </p>
         </div>
 
-        <div ng-show="showSpeakingCurrent">
+        <div ng-if="showUpcomingEvents === true">
+
+          <div class="event" ng-repeat="event in events.upcoming">
+            <strong class="date">{{event.displayDate}} {{event.time}}</strong>
+            <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
+            <strong>
+              {{event.title}}
+            </strong>
+            <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
+            <div ng-repeat="reference in references | filter: {'eventId': event.id}">
+              <i ng-class="reference.icon"></i> <a ng-href="{{reference.url}}">{{reference.referenceText}}</a>
+            </div>
+          </div>
 
           <div class="event">
             <strong class="date">In the future</strong>
@@ -56,22 +67,27 @@
             </p>
           </div>
 
+        </div>
+
+        <div ng-if="showUpcomingEvents === false">
+
+          <div class="event" ng-repeat="event in events.past">
+            <strong class="date">{{event.displayDate}} {{event.time}}</strong>
+            <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
+            <strong>
+              {{event.title}}
+            </strong>
+            <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
+            <div ng-repeat="reference in references | filter: {'eventId': event.id}">
+              <i ng-class="reference.icon"></i> <a ng-href="{{reference.url}}">{{reference.referenceText}}</a>
+            </div>
+          </div>
 
         </div>
-      </div>
 
 
-      <div class="event" ng-repeat="event in events | filter: eventsFilter">
-        <strong class="date">{{event.displayDate}} {{event.time}}</strong>
-        <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
-        <strong>
-          {{event.title}}
-        </strong>
-        <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
-        <div ng-repeat="reference in references | filter: {'eventId': event.id}">
-          <i ng-class="reference.icon"></i> <a ng-href="{{reference.url}}">{{reference.referenceText}}</a>
-        </div>
-      </div>
+
+
 
       <br /><br /><br />
 
