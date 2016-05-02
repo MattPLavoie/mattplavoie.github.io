@@ -24,4 +24,13 @@
 
   function appController($scope, $http) {
     $scope.view = 'events';
+
+    Tabletop.init( {
+      key: api.references,
+      callback: function(data, tabletop) {
+        $scope.references = data;
+        $scope.$digest();
+      },
+      simpleSheet: true
+    } );
   }

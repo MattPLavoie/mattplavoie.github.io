@@ -39,15 +39,7 @@ function eventsController($scope, $http) {
     callback: function(data, tabletop) {
       $scope.events = eventsTransform(data);
       $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
-
-      Tabletop.init( {
-        key: api.references,
-        callback: function(data, tabletop) {
-          $scope.references = data;
-          $scope.$digest();
-        },
-        simpleSheet: true
-      } );
+      $scope.$digest();
     },
     simpleSheet: true,
     orderby: 'date',
