@@ -24,13 +24,8 @@
   ])
   .config(['$routeProvider',
   function($routeProvider) {
-    console.log('foo');
     $routeProvider.
       when('/events', {
-        templateUrl: 'partials/events.html',
-        controller: 'eventsController'
-      }).
-      when('/events/:eventId', {
         templateUrl: 'partials/events.html',
         controller: 'eventsController'
       }).
@@ -39,12 +34,12 @@
       });
   }]);
 
-  app.controller('appController', ['$scope', '$http', appController]);
+  app.controller('appController', ['$scope', '$http', '$location', appController]);
 
-  function appController($scope, $http) {
+  function appController($scope, $http, $location) {
 
     $scope.$on( "$viewContentLoaded", function() {
-      console.log('change: ' + $location.url());
+      console.log('location: ' + $location.url());
     });
 
     Tabletop.init( {
