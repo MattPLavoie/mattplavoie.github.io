@@ -46,5 +46,7 @@ function eventsController($scope, $http) {
       orderby: 'date',
       reverse: true
     } );
+  } else {
+    $scope.$digest();
   }
 }

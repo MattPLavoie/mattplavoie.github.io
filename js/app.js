@@ -43,8 +43,8 @@
 
   function appController($scope, $http) {
 
-    $scope.$on( "$routeChangeSuccess", function() {
-      console.log('change');
+    $scope.$on( "$viewContentLoaded", function() {
+      console.log('change: ' + $location.url());
     });
 
     Tabletop.init( {
