@@ -46,9 +46,9 @@
 
   function appController($scope, $http) {
 
-    $rootScope.$on( "$routeChangeSuccess", function() {
+    $scope.$on( "$routeChangeSuccess", function() {
       console.log('change');
-    }
+    });
 
     Tabletop.init( {
       key: api.references,
