@@ -37,9 +37,6 @@
       otherwise({
         redirectTo: '/events'
       });
-  }])
-  .config(['$locationProvider',function($locationProvider) {
-    $locationProvider.html5Mode(true);
   }]);
 
   app.controller('appController', ['$scope', '$http', appController]);
