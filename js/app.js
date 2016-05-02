@@ -9,7 +9,6 @@
     references: "1X41NyFxfKDsdjgHbKWQ2XdL0Cf4vDQmxkOnRh4JvQNQ"
    };
 
-
   var fetch = function($http, requestUrl, success) {
     $http.get(requestUrl)
     .then(
@@ -19,66 +18,44 @@
       });
   };
 
-  var eventsTransform = function (data) {
-    var transformedEvents = _.forEach(data, function(row) {
-
-      row = _.update(row, 'date', function(date) {
-        var m = moment(date,"MM-DD-YYYY");
-        row.displayDate = m.format("dddd, MMMM Do YYYY");
-        return m;
+  var app = angular.module('app', [
+    'ngSanitize',
+    'ngRoute'
+  ])
+  .config(['$routeProvider',
+  function($routeProvider) {
+    console.log('foo');
+    $routeProvider.
+      when('/events', {
+        templateUrl: 'partials/events.html',
+        controller: 'eventsController'
+      }).
+      when('/events/:eventId', {
+        templateUrl: 'partials/events.html',
+        controller: 'eventsController'
+      }).
+      otherwise({
+        redirectTo: '/events'
       });
+  }])
+  .config(['$locationProvider',function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  }]);
 
-      row = _.update(row, 'description', function(description) {
-        return description.split(/\n/g);
-      })
-
-      return row;
-    });
-
-    var splitEvents = _.partition(transformedEvents, function (event) {
-      return moment().diff(event.date) >= 0;
-    })
-
-    var events = {
-      past: splitEvents[0],
-      upcoming: _.reverse(splitEvents[1])
-    }
-
-    return events;
-  };
-
-  angular.module('myApp', ['ngSanitize'])
-  .controller('appController', ['$scope', '$http', appController])
-  .controller('eventsController', ['$scope', '$http', eventsController]);
-
+  app.controller('appController', ['$scope', '$http', appController]);
 
   function appController($scope, $http) {
-    $scope.view = 'events';
-  }
 
-  function eventsController($scope, $http) {
-
-    $scope.toggle = function() {
-      $scope.showUpcomingEvents = !$scope.showUpcomingEvents;
+    $rootScope.$on( "$routeChangeSuccess", function() {
+      console.log('change');
     }
 
     Tabletop.init( {
-      key: api.events,
+      key: api.references,
       callback: function(data, tabletop) {
-        $scope.events = eventsTransform(data);
-        $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
-
-        Tabletop.init( {
-          key: api.references,
-          callback: function(data, tabletop) {
-            $scope.references = data;
-            $scope.$digest();
-          },
-          simpleSheet: true
-        } );
+        $scope.references = data;
+        $scope.$digest();
       },
-      simpleSheet: true,
-      orderby: 'date',
-      reverse: true
+      simpleSheet: true
     } );
   }
