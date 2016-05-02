@@ -34,15 +34,17 @@ function eventsController($scope, $http) {
     $scope.showUpcomingEvents = !$scope.showUpcomingEvents;
   }
 
-  Tabletop.init( {
-    key: api.events,
-    callback: function(data, tabletop) {
-      $scope.events = eventsTransform(data);
-      $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
-      $scope.$digest();
-    },
-    simpleSheet: true,
-    orderby: 'date',
-    reverse: true
-  } );
+  if(!$scope.events) {
+    Tabletop.init( {
+      key: api.events,
+      callback: function(data, tabletop) {
+        $scope.$parent.events = eventsTransform(data);
+        $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
+        $scope.$digest();
+      },
+      simpleSheet: true,
+      orderby: 'date',
+      reverse: true
+    } );
+  }
 }

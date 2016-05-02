@@ -18,12 +18,37 @@
       });
   };
 
-  window.app = angular.module('myApp', ['ngSanitize']);
+  var app = angular.module('app', [
+    'ngSanitize',
+    'ngRoute'
+  ])
+  .config(['$routeProvider',
+  function($routeProvider) {
+    console.log('foo');
+    $routeProvider.
+      when('/events', {
+        templateUrl: 'partials/events.html',
+        controller: 'eventsController'
+      }).
+      when('/events/:eventId', {
+        templateUrl: 'partials/events.html',
+        controller: 'eventsController'
+      }).
+      otherwise({
+        redirectTo: '/events'
+      });
+  }])
+  .config(['$locationProvider',function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  }]);
 
   app.controller('appController', ['$scope', '$http', appController]);
 
   function appController($scope, $http) {
-    $scope.view = 'events';
+
+    $rootScope.$on( "$routeChangeSuccess", function() {
+      console.log('change');
+    }
 
     Tabletop.init( {
       key: api.references,
