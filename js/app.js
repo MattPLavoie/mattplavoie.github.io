@@ -25,12 +25,16 @@
   .config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/events', {
+      when('/events/', {
         templateUrl: 'partials/events.html',
         controller: 'eventsController'
       }).
+      when('/resources/', {
+        templateUrl: 'partials/resources.html',
+        controller: 'resourcesController'
+      }).
       otherwise({
-        redirectTo: '/events'
+        redirectTo: '/events/'
       });
   }]);
 
@@ -39,7 +43,8 @@
   function appController($scope, $http, $location) {
 
     $scope.$on( "$viewContentLoaded", function() {
-      console.log('location: ' + $location.url());
+      console.log($location.path());
+      ga('send', 'pageview', $location.path());
     });
 
     Tabletop.init( {
