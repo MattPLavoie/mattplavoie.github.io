@@ -42,10 +42,12 @@
 
   function appController($scope, $http, $location) {
 
-    $scope.$on( "$viewContentLoaded", function() {
-      console.log($location.path());
-      ga('send', 'pageview', $location.path());
-    });
+    if($location.host() == "mattplavoie.com") {
+      $scope.$on( "$viewContentLoaded", function() {
+        ga('set', 'page', $location.path());
+        ga('send', 'pageview');
+      });
+    }
 
     Tabletop.init( {
       key: api.references,
