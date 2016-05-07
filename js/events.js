@@ -47,6 +47,6 @@ function eventsController($scope, $http) {
       reverse: true
     } );
   } else {
-    $scope.$digest();
+    //$scope.$digest();
   }
 }
