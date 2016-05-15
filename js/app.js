@@ -49,12 +49,14 @@
       });
     }
 
-    Tabletop.init( {
-      key: api.references,
-      callback: function(data, tabletop) {
-        $scope.references = data;
-        $scope.$digest();
-      },
-      simpleSheet: true
-    } );
+    //if (!$scope.references) {
+
+      Tabletop.init( {
+        key: api.references,
+        callback: function(data, tabletop) {
+          $scope.references = data;
+          $scope.$apply();
+        },
+        simpleSheet: true
+      } );
   }
