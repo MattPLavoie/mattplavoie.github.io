@@ -6,7 +6,7 @@
 
   var api = {
     events: "1JNlc1HvUc0a2p3Yk2ilvk8c5RLcvmhc-1RCOvHJ1WJU",
-    references: "1X41NyFxfKDsdjgHbKWQ2XdL0Cf4vDQmxkOnRh4JvQNQ"
+    resources: "1X41NyFxfKDsdjgHbKWQ2XdL0Cf4vDQmxkOnRh4JvQNQ"
    };
 
   var fetch = function($http, requestUrl, success) {
@@ -42,6 +42,7 @@
 
   function appController($scope, $http, $location) {
 
+    // Google analytics
     if($location.host() == "mattplavoie.com") {
       $scope.$on( "$viewContentLoaded", function() {
         ga('set', 'page', $location.path());
@@ -49,14 +50,42 @@
       });
     }
 
-    //if (!$scope.references) {
+    // Pull data from API for resources
+    Tabletop.init( {
+      key: api.resources,
+      callback: function(data, tabletop) {
+        $scope.references = data;
+        $scope.$digest();
+      },
+      simpleSheet: true
+    } );
 
-      Tabletop.init( {
-        key: api.references,
-        callback: function(data, tabletop) {
-          $scope.references = data;
-          $scope.$apply();
-        },
-        simpleSheet: true
-      } );
+    // Configure scrolling and fixed nav bar
+    var body = $('body');
+    var nav = $('nav');
+    var header = $('header');
+    var headerHeight = 0, navHeight = 0;
+
+    var resizeHandler = function () {
+      headerHeight = header.outerHeight();
+      navHeight = nav.outerHeight();
+      header.css('border-bottom-width', navHeight);
+    };
+
+    resizeHandler();
+
+    $(window).resize(_.throttle(resizeHandler, 60));
+
+    $(document).scroll(_.throttle(function () {
+      if (body.scrollTop() > headerHeight) {
+        body.addClass('sticky');
+      } else {
+        body.removeClass('sticky');
+      }
+    }, 60))
+
+    $scope.scrollTo = function(el) {
+      $('body').animate({ scrollTop: $('.' + el).offset().top - navHeight }, 600);
+    };
+
   }

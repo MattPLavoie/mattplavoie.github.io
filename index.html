@@ -13,7 +13,7 @@
   <div class="container" ng-controller="appController">
 
 
-    <div class="page-header">
+    <header>
       <img src="http://gravatar.com/avatar/d0a3538a3f48601bf0309ad32dced595?s=300" />
       <h1>Hi, my name is Matt.</h1>
       <strong>I love solving real problems for real people, and inspiring others to do the same.</strong>
@@ -23,8 +23,13 @@
         <i class="fa fa-twitter"></i> You can also <a href="https://twitter.com/intent/tweet?text=Hi%20%40mattplavoie">say hi to me on twitter</a>. <br/>
         <i class="fa fa-youtube"></i> I am also starting to share <a href="https://www.youtube.com/channel/UCYcwdl9iRwa6SqruQXoQLoQ">some of my presentations on YouTube</a>.
       </div>
-    </div>
+    </header>
 
+    <nav>
+      <div class="container">
+        <a href="/#/events/" ng-class="{'selected':view=='events'}">Where I'm Speaking</a> <a href="/#/resources/" ng-class="{'selected':view=='resources'}">Writing and Resources</a>  
+      </div>
+    </nav>
 
     <div ng-view></div>
 
