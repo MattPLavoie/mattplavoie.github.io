@@ -1,7 +1,3 @@
-<h1>Where I'm Speaking</h1>
-
-<div class="toggle"><span ng-class="{selected: showUpcomingEvents}" ng-click="toggle()">Upcoming</span><span ng-class="{selected: !showUpcomingEvents}" ng-click="toggle()">Past</span></div>
-
 
 <div ng-if="showUpcomingEvents == undefined">
   <p>
@@ -9,7 +5,9 @@
   </p>
 </div>
 
-<div ng-if="showUpcomingEvents === true">
+<div ng-if="showUpcomingEvents != undefined">
+
+<h1>Upcoming Events</h1>
 
   <div class="event" ng-repeat="event in events.upcoming">
     <strong class="date">{{event.displayDate}} {{event.time}}</strong>
@@ -33,11 +31,9 @@
       If you're interested in asking me to speak at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
     </p>
   </div>
+<br /><br />
 
-</div>
-
-<div ng-if="showUpcomingEvents === false">
-
+<h1>Past Events</h1>
   <div class="event" ng-repeat="event in events.past">
     <strong class="date">{{event.displayDate}} {{event.time}}</strong>
     <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
