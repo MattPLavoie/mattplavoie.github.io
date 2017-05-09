@@ -22,7 +22,7 @@ p {
 }
 
 header {
-  margin: 80px 0;
+  margin: 20px 0;
 }
 
 img.circle {
@@ -67,9 +67,10 @@ img.circle {
 }
 
 nav {
-  padding: 8px 0 12px;
+  padding: 12px 0 16px;
   z-index: 2;
   text-align: center;
+  font-size: 2.5vw;
 }
 
 nav a {
@@ -77,18 +78,29 @@ nav a {
   position: relative;
 }
 
-nav a:hover,
-nav a:focus {
+nav .brand {
+    float: left;
+    font-family: 'Gloria Hallelujah', cursive;
+    top: 8px;
+    left: 8px;
+    position: absolute;
+    color: #444;
+    display: none;
+}
+
+
+nav .container a:hover,
+nav .container a:focus {
   text-decoration: none;
 }
 
-nav a.selected,
-nav a:active {
+nav .container a.selected,
+nav .container a:active {
   text-decoration: none;
   color: #23527c;
 }
 
-nav a:after {
+nav .container a:after {
   color: transparent;
   content: "\f0d8";
   font-family: "FontAwesome";
@@ -97,14 +109,14 @@ nav a:after {
   width: 100%;
   right: 0;
 }
-nav a:hover:after,
-nav a:focus:after {
+nav .container a:hover:after,
+nav .container a:focus:after {
   color: #ff9900;
 }
 
-nav a.selected:after,
-nav a.selected:hover:after,
-nav a:active:after {
+nav .container a.selected:after,
+nav .container a.selected:hover:after,
+nav .container a:active:after {
   color: #23527c;
 }
 
@@ -128,6 +140,7 @@ nav a:active:after {
   font-size: 12pt;
   color: #1380de;
 }
+
 .toggle span {
   padding: 4px 12px;
   display: inline-block;
@@ -174,6 +187,15 @@ nav a:active:after {
     font-size: 27pt;
     padding-top: 32px;
   }
+
+  nav {
+      font-size: 16px;
+  }
+
+  .sticky nav .brand {
+      display: block;
+  }
+
 
   .event {
     padding-left: 85px;
