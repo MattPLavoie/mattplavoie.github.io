@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #FFF;
     color: #444;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;
@@ -14,9 +14,10 @@ p {
 }
 
 header {
-  padding: 80px 0;
+  margin: 80px 0;
 }
-header img {
+/*
+header img.circle {
   margin: 0 auto;
   display: block;
   background: #FFF;
@@ -30,6 +31,37 @@ header img {
 header h1 {
   text-align: center;
   font-size: 32pt;
+}
+*/
+
+.primary-hero {
+    position: relative;
+}
+
+.primary-hero .header-copy {
+    position: absolute;
+    top: 8%;
+    right: 5%;
+    left: 38%;
+    bottom: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 2.2vw;
+}
+.primary-hero .header-copy p {
+    margin: 0.5vw 0;
+}
+
+.primary-hero .sub-copy {
+    font-size: 2vw;
+    text-align: center;
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+    left: 40%;
 }
 
 nav {
@@ -130,10 +162,14 @@ nav a:active:after {
 
 @media (min-width: 768px) {
   header {
-    padding: 80px 0 120px;
+    margin: 80px 0 120px;
   }
 
-  header img {
+  header.primary-hero .header-copy {
+      font-size: 18px;
+  }
+
+  header img.circle {
     float: left;
     margin: 0 40px;
   }
@@ -161,10 +197,17 @@ nav a:active:after {
     padding-top: 42px;
   }
 
+  header.primary-hero .header-copy {
+      font-size: 24px;
+  }
 }
 
 @media (min-width: 1200px) {
   header h1 {
     font-size: 50pt;
+  }
+
+  header.primary-hero .header-copy {
+      font-size: 28px;
   }
 }
