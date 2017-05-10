@@ -1,3 +1,4 @@
+{{blah}}
 
 <div ng-if="showUpcomingEvents == undefined">
   <p>
@@ -21,14 +22,11 @@
     </div>
   </div>
 
-  <div class="event">
+  <div class="event" ng-if="events.upcoming.length === 0">
     <strong class="date">In the future</strong>
-    <h2>At Your Event</h2>
-    <strong>
-      A super cool talk
-    </strong>
+    <h2>No upcoming events</h2>
     <p>
-      If you're interested in asking me to speak at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
+      There's nothing I'm able to announce right now. But if you'd like to ask me about possibly speaking at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
     </p>
   </div>
 <br /><br />

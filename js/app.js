@@ -38,9 +38,9 @@
       });
   }]);
 
-  app.controller('appController', ['$scope', '$http', '$location', appController]);
+  app.controller('appController', ['$scope', '$http', '$location', '$q', appController]);
 
-  function appController($scope, $http, $location) {
+  function appController($scope, $http, $location, $q) {
 
     // Google analytics
     if($location.host() == "mattplavoie.com") {
@@ -58,6 +58,18 @@
         $scope.$digest();
       },
       simpleSheet: true
+    } );
+
+    Tabletop.init( {
+      key: api.events,
+      callback: function(data, tabletop) {
+        $scope.events = eventsTransform(data);
+        $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
+        $scope.$digest();
+      },
+      simpleSheet: true,
+      orderby: 'date',
+      reverse: true
     } );
 
     // Configure scrolling and fixed nav bar
