@@ -95,6 +95,8 @@ function appController($scope, $http, $location, $q) {
         key: api.resources,
         callback: function(data, tabletop) {
             $scope.resources = transformMetadata(data);
+            $scope.resourceTypes = _.uniq(_.map($scope.resources, 'type'));
+            console.log($scope.resourceTypes);
             $scope.$digest();
         },
         simpleSheet: true
@@ -126,7 +128,7 @@ var transformMetadata = function (data) {
         });
 
         row = _.update(row, 'description', function(description) {
-            return description.split(/\n/g);
+            return _.compact(description.split(/\n/g));
         })
 
         return row;
