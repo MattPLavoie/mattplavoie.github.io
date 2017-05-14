@@ -16,7 +16,9 @@
     </strong>
     <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
     <div ng-repeat="resource in resources | filter: {'eventId': event.id}">
-      <i ng-class="resource.icon"></i> <a ng-href="{{resource.url}}">{{resource.resourceText}}</a>
+      <i ng-class="resource.icon"></i>
+      <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.referenceText}}</a>
+      <i class="fa fa-external-link" ng-if="!resource.file"></i>
     </div>
   </div>
 
@@ -38,7 +40,9 @@
     </strong>
     <p ng-repeat="paragraph in event.description" ng-bind-html="paragraph"></p>
     <div ng-repeat="resource in resources | filter: {'eventId': event.id}">
-      <i ng-class="resource.icon"></i> <a ng-href="{{resource.url}}">{{resource.referenceText}}</a>
+        <i ng-class="resource.icon"></i>
+        <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.referenceText}}</a>
+        <i class="fa fa-external-link" ng-if="!resource.file"></i>
     </div>
   </div>
 
