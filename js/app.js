@@ -46,15 +46,53 @@ var fetch = function($http, requestUrl, success) {
 
     function appController($scope, $http, $location, $q) {
 
-        // Google analytics
-        if($location.host() == "mattplavoie.com") {
-            $scope.$on( "$viewContentLoaded", function() {
+        // Configure scrolling and fixed nav bar
+        var body = $('body');
+        var nav = $('nav');
+        var header = $('header');
+        var headerHeight = 0, navHeight = 0, initialScroll = 0;
+
+        var resizeHandler = function () {
+            headerHeight = header.outerHeight();
+            navHeight = nav.outerHeight();
+            header.css('border-bottom-width', navHeight);
+        };
+
+        resizeHandler();
+
+        $(window).resize(_.throttle(resizeHandler, 60));
+
+        $(document).scroll(_.throttle(function () {
+            if (body.scrollTop() >= headerHeight) {
+                body.addClass('sticky');
+            } else {
+                body.removeClass('sticky');
+            }
+        }, 60));
+
+        $scope.scrollTo = function(el) {
+            body.animate({ scrollTop: $('.' + el).offset().top - navHeight }, 600);
+        };
+
+        // New Page, record Google analytics and reposition scroll
+        $scope.$on( "$routeChangeStart", function() {
+            initialScroll = body.scrollTop();
+        });
+        $scope.$on( "$viewContentLoaded", function() {
+            if($location.host() == "mattplavoie.com") {
                 ga('set', 'page', $location.path());
                 ga('send', 'pageview');
-            });
-        }
+            }
 
-        // Pull data from API for resources
+            if (initialScroll > headerHeight) {
+                _.delay(function() {
+                    body.scrollTop(headerHeight);
+                }, 60);
+            }
+        });
+
+
+        // Pull data from APIs and apply data transforms
         Tabletop.init( {
             key: api.resources,
             callback: function(data, tabletop) {
@@ -75,35 +113,6 @@ var fetch = function($http, requestUrl, success) {
             orderby: 'date',
             reverse: true
         } );
-
-        // Configure scrolling and fixed nav bar
-        var body = $('body');
-        var nav = $('nav');
-        var header = $('header');
-        var headerHeight = 0, navHeight = 0;
-
-        var resizeHandler = function () {
-            headerHeight = header.outerHeight();
-            navHeight = nav.outerHeight();
-            header.css('border-bottom-width', navHeight);
-        };
-
-        resizeHandler();
-
-        $(window).resize(_.throttle(resizeHandler, 60));
-
-        $(document).scroll(_.throttle(function () {
-            if (body.scrollTop() > headerHeight) {
-                body.addClass('sticky');
-            } else {
-                body.removeClass('sticky');
-            }
-        }, 60))
-
-        $scope.scrollTo = function(el) {
-            $('body').animate({ scrollTop: $('.' + el).offset().top - navHeight }, 600);
-        };
-
     }
 
 
