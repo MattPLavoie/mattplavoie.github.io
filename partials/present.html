@@ -1,0 +1,5 @@
+<div ng-repeat="resource in resources | filter: {'resourceId': resourceId}">
+    <h1>{{resource.title}}</h1>
+    <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
+    <img ng-src="/resources/{{resource.file}}"  />
+</div>

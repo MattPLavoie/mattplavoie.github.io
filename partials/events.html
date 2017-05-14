@@ -1,5 +1,3 @@
-{{blah}}
-
 <div ng-if="showUpcomingEvents == undefined">
   <p>
     loading...
@@ -17,8 +15,8 @@
       {{event.title}}
     </strong>
     <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
-    <div ng-repeat="reference in references | filter: {'eventId': event.id}">
-      <i ng-class="reference.icon"></i> <a ng-href="{{reference.url}}">{{reference.referenceText}}</a>
+    <div ng-repeat="resource in resources | filter: {'eventId': event.id}">
+      <i ng-class="resource.icon"></i> <a ng-href="{{resource.url}}">{{resource.resourceText}}</a>
     </div>
   </div>
 
@@ -39,8 +37,8 @@
       {{event.title}}
     </strong>
     <p ng-repeat="paragraph in event.description" ng-bind-html="paragraph"></p>
-    <div ng-repeat="reference in references | filter: {'eventId': event.id}">
-      <i ng-class="reference.icon"></i> <a ng-href="{{reference.url}}">{{reference.referenceText}}</a>
+    <div ng-repeat="resource in resources | filter: {'eventId': event.id}">
+      <i ng-class="resource.icon"></i> <a ng-href="{{resource.url}}">{{resource.referenceText}}</a>
     </div>
   </div>
 

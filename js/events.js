@@ -1,31 +1,3 @@
-var eventsTransform = function (data) {
-  var transformedEvents = _.forEach(data, function(row) {
-
-    row = _.update(row, 'date', function(date) {
-      var m = moment(date,"MM-DD-YYYY");
-      row.displayDate = m.format("dddd, MMMM Do YYYY");
-      return m;
-    });
-
-    row = _.update(row, 'description', function(description) {
-      return description.split(/\n/g);
-    })
-
-    return row;
-  });
-
-  var splitEvents = _.partition(transformedEvents, function (event) {
-    return moment().subtract(1, 'days').diff(event.date) >= 0;
-  })
-
-  var events = {
-    past: splitEvents[0],
-    upcoming: _.reverse(splitEvents[1])
-  }
-
-  return events;
-};
-
 app.controller('eventsController', ['$scope', '$http', eventsController]);
 
 function eventsController($scope, $http) {
