@@ -1,1 +1,21 @@
-<h1>Things I've Written and Other Resources</h1>
+<div ng-if="resourceTypes == undefined">
+    <p>
+        loading...
+    </p>
+</div>
+
+<div ng-repeat="resourceType in resourceTypes">
+    <h1>{{resourceType}}</h1>
+
+    <div ng-repeat="resource in resources | filter: {'type': resourceType} | orderBy:'-date'" class="resource-list">
+        <h2>
+            <i ng-class="resource.icon"></i>
+            <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.title}}</a>
+            <i class="fa fa-external-link" ng-if="!resource.file"></i>
+        </h2>
+        <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
+    </div>
+
+    <br /><br />
+
+</div>
