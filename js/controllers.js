@@ -20,5 +20,4 @@ function eventsController($scope, $http) {
 
 function aboutController($scope, $http) {
   $scope.$parent.view = "about";
-  console.log('ab')
 }
