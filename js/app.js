@@ -36,7 +36,7 @@ function($routeProvider) {
         controller: 'aboutController'
     }).
     otherwise({
-        redirectTo: '/events/'
+        redirectTo: '/resources/'
     });
 }]);
 
@@ -56,7 +56,7 @@ function appController($scope, $http, $location, $q) {
         header.css('border-bottom-width', navHeight);
     };
 
-    resizeHandler();
+    _.delay(resizeHandler, 60);
 
     $(window).resize(_.throttle(resizeHandler, 60));
 
@@ -96,7 +96,7 @@ function appController($scope, $http, $location, $q) {
         callback: function(data, tabletop) {
             $scope.resources = transformMetadata(data);
             $scope.resourceTypes = _.uniq(_.map($scope.resources, 'type'));
-            console.log($scope.resourceTypes);
+            console.log($scope.resources);
             $scope.$digest();
         },
         simpleSheet: true
@@ -106,7 +106,6 @@ function appController($scope, $http, $location, $q) {
         key: api.events,
         callback: function(data, tabletop) {
             $scope.events = eventsTransform(data);
-            $scope.showUpcomingEvents = $scope.events.upcoming.length > 0;
             $scope.$digest();
         },
         simpleSheet: true,
