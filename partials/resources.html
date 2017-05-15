@@ -7,12 +7,12 @@
 <div ng-repeat="resourceType in resourceTypes">
     <h1>{{resourceType}}</h1>
 
-    <div ng-repeat="resource in resources | filter: {'type': resourceType, 'independentResource':'yes'} | orderBy:'-date'" class="resource-list">
-        <h2>
+    <div ng-repeat="resource in resources | filter: {'type': resourceType, 'independentResource':'yes'} | orderBy:'-date'" class="item">
+        <h3 class="item-title">
             <i ng-class="resource.icon"></i>
             <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.title}}</a>
-            <i class="fa fa-external-link" ng-if="!resource.file"></i>
-        </h2>
+        </h3>
+        <div class="item-date">{{resource.displayDate}}</div>
         <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
     </div>
 

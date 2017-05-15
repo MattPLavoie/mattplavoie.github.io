@@ -20,7 +20,7 @@ h1, h2, h3 {
   font-weight: 300;
 }
 
-h1, h3 {
+h1, h2.alt, h3.alt {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
@@ -80,6 +80,8 @@ img.circle {
 
 .primary-content {
     min-height: 1080px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 nav {
@@ -154,19 +156,23 @@ nav .container a:active:after {
   box-shadow: 0 6px 10px #FFF;
 }
 
-.event {
+.item {
   padding-left: 20px;
+  padding-top: 42px;
 }
 
-.event .date {
-  margin: 42px 0 0 -20px;
-  padding: 4px 12px;
-  display: block;
-  position: relative;
-  font-size: 12pt;
-  font-weight: 700;
-  color: #777;
-  border-bottom: 2px solid #777;
+.item .item-super-title {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.item .item-title {
+    margin: 0;
+}
+
+.item .item-date {
+    color: #999;
+    font-size: .8em;
 }
 
 .resource-list {
@@ -201,14 +207,8 @@ nav .container a:active:after {
       display: block;
   }
 
-
-  .event {
+  .item {
     padding-left: 85px;
-  }
-
-
-  .event .date {
-    margin: 42px 0 0 -85px;
   }
 
 }
