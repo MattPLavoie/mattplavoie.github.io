@@ -8,41 +8,53 @@
 
     <h1>Upcoming Events</h1>
 
-    <div class="event" ng-repeat="event in events.upcoming">
-        <strong class="date">{{event.displayDate}} {{event.time}}</strong>
-        <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
-        <strong>
-            {{event.title}}
-        </strong>
-        <p ng-repeat="paragraph in event.description">{{paragraph}}</p>
+    <div class="item" ng-repeat="event in events.upcoming">
+        <div class="item-super-title">{{event.event}}</div>
+        <h3 class="item-title">{{event.title}}</h3>
+        <div class="item-date">{{event.displayDate}} {{event.time}}</div>
+
+        <p ng-repeat="paragraph in event.description" ng-bind-html="paragraph"></p>
+
         <div ng-repeat="resource in resources | filter: {'eventId': event.id}" class="resource-list">
             <i ng-class="resource.icon"></i>
             <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.referenceText}}</a>
             <i class="fa fa-external-link" ng-if="!resource.file"></i>
         </div>
+        <div ng-if="event.url" class="resource-list">
+            <i class="fa fa-globe"></i>
+            <a ng-href="{{event.url}}" target="_blank">View the event website</a>
+            <i class="fa fa-external-link"></i>
+        </div>
     </div>
 
-    <div class="event" ng-if="events.upcoming.length === 0">
-        <strong class="date">In the future</strong>
-        <h2>No upcoming events</h2>
+    <div class="item" ng-if="events.upcoming.length === 0">
+        <div class="item-super-title">At Your Event</div>
+        <h3 class="item-title">An Awesome Talk</h3>
+        <div class="item-date">In the future</div>
         <p>
             There's nothing I'm able to announce right now. But if you'd like to ask me about possibly speaking at an event, <a href="mailto:mattplavoie@gmail.com">please reach out (mattplavoie@gmail.com)</a>.
         </p>
+
     </div>
     <br /><br />
 
     <h1>Past Events</h1>
-    <div class="event" ng-repeat="event in events.past">
-        <strong class="date">{{event.displayDate}} {{event.time}}</strong>
-        <h2 ng-if="event.url"><a ng-href="{{event.url}}">{{event.event}}</a></h2><h2 ng-if="!event.url">{{event.event}}</h2>
-        <strong>
-            {{event.title}}
-        </strong>
+    <div class="item" ng-repeat="event in events.past">
+        <div class="item-super-title">{{event.event}}</div>
+        <h3 class="item-title">{{event.title}}</h3>
+        <div class="item-date">{{event.displayDate}} {{event.time}}</div>
+
         <p ng-repeat="paragraph in event.description" ng-bind-html="paragraph"></p>
+
         <div ng-repeat="resource in resources | filter: {'eventId': event.id}" class="resource-list">
             <i ng-class="resource.icon"></i>
             <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.referenceText}}</a>
             <i class="fa fa-external-link" ng-if="!resource.file"></i>
+        </div>
+        <div ng-if="event.url" class="resource-list">
+            <i class="fa fa-globe"></i>
+            <a ng-href="{{event.url}}" target="_blank">View the event website</a>
+            <i class="fa fa-external-link"></i>
         </div>
     </div>
 
