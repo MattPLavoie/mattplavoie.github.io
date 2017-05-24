@@ -96,7 +96,6 @@ function appController($scope, $http, $location, $q) {
         callback: function(data, tabletop) {
             $scope.resources = transformMetadata(data);
             $scope.resourceTypes = _.uniq(_.map($scope.resources, 'type'));
-            console.log($scope.resources);
             $scope.$digest();
         },
         simpleSheet: true

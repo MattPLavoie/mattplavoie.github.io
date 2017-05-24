@@ -9,6 +9,12 @@ function resourcesController($scope, $http, $routeParams) {
     if ($routeParams.resourceId) {
         $scope.resourceId = $routeParams.resourceId;
         $scope.$parent.view = "present";
+
+        $('.image-container').imagesLoaded(function () {
+            $('.loader').hide();
+            console.log('loaded');
+        });
+
     } else {
         $scope.$parent.view = "resources";
     }
