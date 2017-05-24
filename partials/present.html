@@ -2,8 +2,8 @@
     <h1>{{resource.title}}</h1>
     <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
 
-    <div class="loader"></div>
-    <div class="image-container">
+    <div class="loading-container">
+        <div class="loader"></div>
         <img ng-src="/resources/{{resource.file}}" />
     </div>
 

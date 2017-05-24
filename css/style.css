@@ -183,6 +183,10 @@ nav .container a:active:after {
     font-size: .75em;
 }
 
+.loading-container img {
+    opacity: 0.3;
+}
+
 .loader {
     background: url("/images/loader.gif") center center no-repeat;
     min-height: 180px;
@@ -197,6 +201,14 @@ nav .container a:active:after {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.loaded .loader {
+    display: none;
+}
+
+.loading-container.loaded img {
+    opacity: 1;
 }
 
 @media (min-width: 768px) {

@@ -10,10 +10,15 @@ function resourcesController($scope, $http, $routeParams) {
         $scope.resourceId = $routeParams.resourceId;
         $scope.$parent.view = "present";
 
-        $('.image-container').imagesLoaded(function () {
-            $('.loader').hide();
-            console.log('loaded');
-        });
+
+
+        _.delay(function () {
+            var loadingContainer = $('.loading-container');
+            loadingContainer.imagesLoaded(function () {
+                loadingContainer.addClass('loaded');
+                console.log('loaded');
+            });
+        }, 600);
 
     } else {
         $scope.$parent.view = "resources";
