@@ -1,7 +1,12 @@
 <div ng-repeat="resource in resources | filter: {'resourceId': resourceId}">
     <h1>{{resource.title}}</h1>
     <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
-    <img ng-src="/resources/{{resource.file}}"  />
+
+    <div class="loading-container">
+        <div class="loader"></div>
+        <img ng-src="/resources/{{resource.file}}" />
+    </div>
+
 </div>
 
 <h3 class="alt"><i class="fa fa-long-arrow-left"></i> <a href="/#/resources/">View Other Presentations</a></h3>
