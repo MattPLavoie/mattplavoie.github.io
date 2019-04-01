@@ -20,7 +20,7 @@ h1, h2, h3 {
   font-weight: 300;
 }
 
-h1, h2.alt, h3.alt {
+h1.alt, h2.alt, h3.alt {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
