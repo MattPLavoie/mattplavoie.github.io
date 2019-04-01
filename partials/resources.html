@@ -9,7 +9,7 @@
             <i ng-class="resource.icon"></i>
             <a ng-href="{{resource.url}}" ng-attr-target="{{resource.file ? '_self' : '_blank'}}">{{resource.title}}</a>
         </h3>
-        <div class="item-date">{{resource.displayDate}}</div>
+        
         <p ng-repeat="paragraph in resource.description" ng-bind-html="paragraph"></p>
     </div>
 
